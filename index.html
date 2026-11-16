@@ -1,34 +1,960 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <link rel="stylesheet" href="./styles.css">
-        
-    </head> 
-    <body>
-        <div class="container">
-            <div >
-                <h1 class = "header_text">Can you forgive me?</h1>
-            </div>
-            <div class="gif_container">
-                <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute animated illustration">
-            </div>
-            <div class = "buttons">
-                <button class="btn" id = "yesButton" onclick="nextPage()">Yes</button>
-                <button class="btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
-                <script>
-                    function nextPage() {
-                        window.location.href = "yes.html";
-                    }
-                    
-                    function moveButton() {
-                        var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth) - 85;
-                        var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight) - 48;
-                        document.getElementById('noButton').style.left = `${x}px`;
-                        document.getElementById('noButton').style.top = `${y}px`;
-                    }
-                </script> 
-            </div>
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ahammed Jumma · AI engineer &amp; ML researcher</title>
+  <meta name="description" content="Ahammed Jumma builds machine learning systems end to end: flow matching for medical imaging, graph data at national scale, on-device LLMs and production RAG platforms. Based in Dhaka, Bangladesh.">
+  <meta name="author" content="Ahammed Jumma">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0c0c0d" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f3f0ea" media="(prefers-color-scheme: light)">
+  <link rel="canonical" href="https://0-lucifer.github.io/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://0-lucifer.github.io/">
+  <meta property="og:title" content="Ahammed Jumma · AI engineer &amp; ML researcher">
+  <meta property="og:description" content="Flow matching for medical imaging, graph data at national scale, on-device LLMs and production RAG platforms.">
+  <meta property="og:image" content="https://0-lucifer.github.io/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script>
+    /* Theme before first paint, and a JS flag that falls back if the main script never runs. */
+    (function () {
+      var d = document.documentElement;
+      d.classList.replace('no-js', 'js');
+      try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t); } catch (e) {}
+      try { if (sessionStorage.getItem('introSeen') || matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('skip-intro'); } catch (e) {}
+      setTimeout(function () { if (!window.__siteReady) d.classList.replace('js', 'no-js'); }, 4000);
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ahammed Jumma",
+    "url": "https://0-lucifer.github.io/",
+    "jobTitle": "Software Developer (AI and Automation)",
+    "worksFor": { "@type": "Organization", "name": "Canduit" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "North South University" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
+    "knowsAbout": ["Machine learning", "Flow matching", "Medical image analysis", "Retrieval augmented generation", "LLM agents", "Graph databases", "Flutter", "Kubernetes"],
+    "sameAs": ["https://github.com/0-Lucifer"]
+  }
+  </script>
+
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/SplitText.min.js" defer></script>
+  <script src="assets/vendor/lenis.min.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M8.5 7H17v8.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 8V6.5A2.5 2.5 0 0 0 13.5 4h-7A2.5 2.5 0 0 0 4 6.5v7A2.5 2.5 0 0 0 6.5 16H8" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Preloader -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader__top">
+      <span class="loader__mark">AJ</span>
+      <span class="loader__note">Portfolio · 2026</span>
+    </div>
+    <div class="loader__bottom">
+      <span class="loader__name">Ahammed <em>Jumma</em></span>
+      <span class="loader__count"><span class="loader__digits">0</span>%</span>
+    </div>
+    <div class="loader__bar"><i></i></div>
+  </div>
+
+  <div class="progress" aria-hidden="true"><i></i></div>
+  <div class="cursor" aria-hidden="true"><span class="cursor__label">Open</span></div>
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Navigation -->
+  <header class="nav" id="top">
+    <a class="nav__brand" href="#top" aria-label="Ahammed Jumma, back to top">
+      <span class="nav__mark">AJ</span>
+      <span class="nav__brandtext"><span>Ahammed Jumma</span><span>Back to top</span></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#about"><span>About</span></a>
+      <a href="#research"><span>Research</span></a>
+      <a href="#work"><span>Work</span></a>
+      <a href="#experience"><span>Experience</span></a>
+      <a href="#contact"><span>Contact</span></a>
+    </nav>
+    <div class="nav__actions">
+      <span class="nav__clock" aria-label="Local time in Dhaka"><span class="dot"></span>Dhaka <time class="js-clock">--:--</time></span>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch colour theme">
+        <svg class="i-sun"><use href="#i-sun"/></svg><svg class="i-moon"><use href="#i-moon"/></svg>
+      </button>
+      <a class="pill pill--solid magnetic" href="cv.html">CV <svg><use href="#i-arrow"/></svg></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobileMenu"><span class="menu-btn__lines"></span><span class="sr-only">Menu</span></button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <nav aria-label="Mobile">
+      <a href="#about"><span>01</span>About</a>
+      <a href="#research"><span>02</span>Research</a>
+      <a href="#work"><span>03</span>Work</a>
+      <a href="#experience"><span>04</span>Experience</a>
+      <a href="#contact"><span>05</span>Contact</a>
+      <a href="cv.html"><span>CV</span>Résumé</a>
+    </nav>
+    <p class="mobile-menu__foot">jummaahammed@gmail.com</p>
+  </div>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-label="Introduction">
+      <canvas class="hero__canvas" aria-hidden="true"></canvas>
+      <div class="hero__content">
+        <p class="hero__eyebrow"><span class="hero__ava"><picture><source type="image/webp" srcset="assets/img/avatar-160.webp"><img src="assets/img/avatar-160.jpg" alt="" width="30" height="30"></picture><span class="pulse"></span></span>Software Developer, AI &amp; Automation at Canduit</p>
+        <h1 class="hero__name">
+          <span class="hero__line" data-hero-chars>Ahammed</span>
+          <span class="hero__line hero__line--serif" data-hero-chars>Jumma</span>
+        </h1>
+      </div>
+      <div class="hero__bottom">
+        <p class="hero__lede" data-hero-fade>I work on both ends of applied AI. In research I model how anatomy changes over time with <em>flow matching</em>. At work I build the services that put language models in front of real customers.</p>
+        <ul class="hero__meta" data-hero-fade>
+          <li><span>Now</span>AI support platform at Canduit</li>
+          <li><span>Research</span>TDFlow (in prep) · CitizenLink (under revision)</li>
+          <li><span>Studied</span>CSE, North South University</li>
+        </ul>
+        <a class="hero__scroll magnetic" href="#about" data-hero-fade aria-label="Scroll to about">
+          <svg><use href="#i-down"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <div class="marquee__group">
+          <span>Flow matching</span><i>✺</i><span>Medical imaging</span><i>✺</i><span>RAG</span><i>✺</i><span>LLM agents</span><i>✺</i><span>Quantisation</span><i>✺</i><span>On-device AI</span><i>✺</i><span>Graph data</span><i>✺</i><span>Kubernetes</span><i>✺</i><span>Payments</span><i>✺</i><span>Flutter</span><i>✺</i>
         </div>
-       
-    </body> 
+        <div class="marquee__group">
+          <span>Flow matching</span><i>✺</i><span>Medical imaging</span><i>✺</i><span>RAG</span><i>✺</i><span>LLM agents</span><i>✺</i><span>Quantisation</span><i>✺</i><span>On-device AI</span><i>✺</i><span>Graph data</span><i>✺</i><span>Kubernetes</span><i>✺</i><span>Payments</span><i>✺</i><span>Flutter</span><i>✺</i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow"><span>01</span>About</p>
+          <h2 class="sec-title" id="about-title" data-split-lines>I build the model, <em>and</em> everything around it.</h2>
+        </div>
+        <div class="about__grid">
+          <div class="about__text">
+            <p class="about__statement" data-scrub-words>I care about the whole path from an idea to something people actually use. That means the model, and also the data pipeline that feeds it, the latency budget it has to meet, the server it runs on, the bill at the end of the month, and the person waiting on the other side of the chat.</p>
+            <div class="about__side" data-reveal>
+              <p>I studied Computer Science and Engineering at North South University in Dhaka. Most of my research sits in medical imaging and efficient language models. My day job is backend, AI and DevOps work on a multi-tenant support platform.</p>
+              <p>I lead teams when I can. I've led every course project team I was on, the senior design capstone, and a ride sharing startup I founded for students.</p>
+            </div>
+          </div>
+          <figure class="portrait">
+            <div class="portrait__frame">
+              <picture>
+                <source type="image/webp" srcset="assets/img/portrait-720.webp 720w, assets/img/portrait-1080.webp 1080w" sizes="(max-width: 960px) 92vw, 34vw">
+                <img src="assets/img/portrait-720.jpg" srcset="assets/img/portrait-720.jpg 720w, assets/img/portrait-1080.jpg 1080w" sizes="(max-width: 960px) 92vw, 34vw" width="720" height="900" alt="Ahammed Jumma in a blue-grey suit and striped tie" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="portrait__badge" aria-hidden="true">
+              <svg class="portrait__ring" viewBox="0 0 120 120"><defs><path id="ring" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs><text><textPath href="#ring">AHAMMED JUMMA · AI · RESEARCH · CODE · </textPath></text></svg>
+              <svg class="portrait__arrow"><use href="#i-arrow"/></svg>
+            </div>
+            <figcaption><span>Ahammed Jumma</span><span>Dhaka, Bangladesh</span></figcaption>
+          </figure>
+        </div>
+
+        <ul class="stats" role="list">
+          <li class="stat" data-reveal>
+            <span class="stat__num"><b data-count="5.13" data-decimals="2">5.13</b>M</span>
+            <span class="stat__label">citizens in a queryable family graph</span>
+            <span class="stat__src">CitizenLink</span>
+          </li>
+          <li class="stat" data-reveal>
+            <span class="stat__num"><b data-count="0.864" data-decimals="3">0.864</b></span>
+            <span class="stat__label">AUC with no biopsy labels, vs 0.812 supervised</span>
+            <span class="stat__src">TDFlow</span>
+          </li>
+          <li class="stat" data-reveal>
+            <span class="stat__num">−<b data-count="48">48</b>%</span>
+            <span class="stat__label">inference latency on Qwen3-4B, accuracy within 1.5%</span>
+            <span class="stat__src">QA-LoRA</span>
+          </li>
+          <li class="stat" data-reveal>
+            <span class="stat__num"><b data-count="98">98</b>%</span>
+            <span class="stat__label">accuracy across 800K+ semiconductor wafer maps</span>
+            <span class="stat__src">Deep fusion networks</span>
+          </li>
+          <li class="stat" data-reveal>
+            <span class="stat__num"><b data-count="328">328</b>MB</span>
+            <span class="stat__label">language model running offline on an Android phone</span>
+            <span class="stat__src">Offline Chatbot</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ RESEARCH ============ -->
+    <section class="section research" id="research" aria-labelledby="research-title">
+      <div class="wrap">
+        <div class="sec-head sec-head--split">
+          <div>
+            <p class="eyebrow"><span>02</span>Research</p>
+            <h2 class="sec-title" id="research-title" data-split-lines>Questions I keep <em>coming back</em> to.</h2>
+          </div>
+          <ul class="tags" data-reveal aria-label="Research interests">
+            <li>Medical image analysis</li><li>Flow matching</li><li>Self-supervised &amp; contrastive learning</li><li>Efficient LLMs</li><li>LLM agents &amp; tool use</li><li>RAG</li><li>Explainable AI</li><li>Speech &amp; language AI for Bangla</li><li>Graph data systems</li>
+          </ul>
+        </div>
+
+        <article class="paper" data-reveal>
+          <div class="paper__viz paper__viz--flow">
+            <canvas class="flow-viz" aria-hidden="true"></canvas>
+            <div class="viz-label viz-label--tl">x<sub>0</sub> ~ noise</div>
+            <div class="viz-label viz-label--br">t = <span class="js-flow-t">0.00</span></div>
+            <p class="viz-caption">Flow matching learns a velocity field that carries noise to data along smooth paths. TDFlow applies the same idea to how anatomy deforms between scans.</p>
+          </div>
+          <div class="paper__body">
+            <p class="paper__status"><span class="status status--prep">In preparation</span><span class="paper__venue">Manuscript</span></p>
+            <h3 class="paper__title">Unsupervised differentiation of glioma recurrence and radiation necrosis via continuous flow matching of anatomical trajectories</h3>
+            <p class="paper__authors">M. M. Uddin, <b>A. Jumma</b>, M. Y. S. Emu</p>
+            <p>After radiotherapy, a growing lesion on an MRI can be the tumour coming back or tissue damaged by the treatment, and on a single scan the two look nearly the same. TDFlow, our model, looks at how the anatomy moves between scans instead. A 3D U-Net flow matching model, trained on 3,000 healthy and 2,637 longitudinal patient scans, produces deformation features that a ConvNeXt-3D and Mamba encoder clusters without any labels.</p>
+            <dl class="paper__metrics">
+              <div><dt>AUC, unsupervised</dt><dd>0.864</dd></div>
+              <div><dt>Supervised 3D ResNet-18</dt><dd>0.812</dd></div>
+              <div><dt>Scans</dt><dd>5,637</dd></div>
+            </dl>
+            <p class="paper__role"><span>My part</span>Proposed the idea, prepared the data, building the model and writing the manuscript. It also held up on an external cohort.</p>
+          </div>
+        </article>
+
+        <article class="paper paper--flip" data-reveal>
+          <div class="paper__viz paper__viz--graph">
+            <svg class="family-graph" viewBox="0 0 420 330" role="img" aria-label="An animated family graph across four generations, highlighting one person's lineage"></svg>
+            <div class="viz-label viz-label--tl">MATCH (p)-[:PARENT_OF*]-(kin)</div>
+            <div class="viz-label viz-label--br js-graph-readout">hover a person</div>
+            <p class="viz-caption">Parent, child and marriage ties stored as edges, so "who are this person's heirs" is a graph walk instead of a pile of joins.</p>
+          </div>
+          <div class="paper__body">
+            <p class="paper__status"><span class="status status--rev">Under revision</span><span class="paper__venue">Journal manuscript</span></p>
+            <h3 class="paper__title">CitizenLink: scalable graph-based modeling and analysis of multi-generational citizen relationships</h3>
+            <p class="paper__authors"><b>A. Jumma</b>, A. Bormon, A. A. Zishan, R. Palit</p>
+            <p>Bangladesh's civil registry stores people as rows, yet many of the questions asked of it are about relationships. Who are this person's legal heirs? Was this child registered twice? CitizenLink models parent, child and marital ties as a graph, which supports family trees, inheritor identification, lineage tracing and duplicate birth registration detection, all queries that record-oriented databases handle poorly.</p>
+            <dl class="paper__metrics">
+              <div><dt>Citizens</dt><dd>5.13M</dd></div>
+              <div><dt>Relationships</dt><dd>10.16M</dd></div>
+              <div><dt>NID lookup</dt><dd>13.0 ms</dd></div>
+              <div><dt>Relationship queries</dt><dd>&lt;100 ms</dd></div>
+            </dl>
+            <p class="paper__role"><span>My part</span>Refined the core idea, optimised query speed, and wrote the paper and its figures.</p>
+            <a class="link-arrow" href="https://github.com/anontobr913/BD-Citizenlink" target="_blank" rel="noopener">View code <svg><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="work" id="work" aria-labelledby="work-title">
+      <div class="work__pin">
+        <div class="work__head wrap">
+          <div>
+            <p class="eyebrow"><span>03</span>Selected work</p>
+            <h2 class="sec-title sec-title--sm" id="work-title" data-split-lines>Things I've <em>shipped</em>.</h2>
+          </div>
+          <div class="work__progress" aria-hidden="true">
+            <span class="work__count"><b class="js-work-index">01</b> / 07</span>
+            <span class="work__bar"><i></i></span>
+            <span class="work__hint">Scroll</span>
+          </div>
+        </div>
+
+        <div class="work__track">
+          <!-- 01 Platform -->
+          <article class="card" data-case="platform">
+            <div class="card__viz viz-platform" aria-hidden="true">
+              <svg viewBox="0 0 420 300">
+                <defs>
+                  <path id="pp1" d="M92 52 C150 52 140 150 196 150"/>
+                  <path id="pp2" d="M92 112 C140 112 150 150 196 150"/>
+                  <path id="pp3" d="M92 188 C140 188 150 150 196 150"/>
+                  <path id="pp4" d="M92 248 C150 248 140 150 196 150"/>
+                  <path id="pq1" d="M262 150 C300 150 290 70 318 70"/>
+                  <path id="pq2" d="M262 150 L318 150"/>
+                  <path id="pq3" d="M262 150 C300 150 290 230 318 230"/>
+                </defs>
+                <g class="vp-lines">
+                  <use href="#pp1"/><use href="#pp2"/><use href="#pp3"/><use href="#pp4"/>
+                  <use href="#pq1"/><use href="#pq2"/><use href="#pq3"/>
+                </g>
+                <g class="vp-chan">
+                  <rect x="14" y="36" width="78" height="32" rx="16"/><text x="53" y="56">Web chat</text>
+                  <rect x="14" y="96" width="78" height="32" rx="16"/><text x="53" y="116">WhatsApp</text>
+                  <rect x="14" y="172" width="78" height="32" rx="16"/><text x="53" y="192">Messenger</text>
+                  <rect x="14" y="232" width="78" height="32" rx="16"/><text x="53" y="252">Email</text>
+                </g>
+                <g class="vp-core">
+                  <rect x="196" y="118" width="66" height="64" rx="14"/>
+                  <text x="229" y="146">verify</text><text x="229" y="162">route</text>
+                </g>
+                <g class="vp-tenant">
+                  <rect x="318" y="44" width="88" height="52" rx="12"/><text x="362" y="66">tenant</text><text x="362" y="82" class="sm">RAG · agents</text>
+                  <rect x="318" y="124" width="88" height="52" rx="12"/><text x="362" y="146">tenant</text><text x="362" y="162" class="sm">RAG · agents</text>
+                  <rect x="318" y="204" width="88" height="52" rx="12"/><text x="362" y="226">tenant</text><text x="362" y="242" class="sm">RAG · agents</text>
+                </g>
+                <g class="vp-dots">
+                  <circle r="3.4"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#pp1"/></animateMotion></circle>
+                  <circle r="3.4"><animateMotion dur="2.2s" begin=".6s" repeatCount="indefinite"><mpath href="#pp2"/></animateMotion></circle>
+                  <circle r="3.4"><animateMotion dur="2.4s" begin="1.1s" repeatCount="indefinite"><mpath href="#pp3"/></animateMotion></circle>
+                  <circle r="3.4"><animateMotion dur="2.8s" begin=".3s" repeatCount="indefinite"><mpath href="#pp4"/></animateMotion></circle>
+                  <circle r="3.4" class="acc"><animateMotion dur="1.8s" begin=".9s" repeatCount="indefinite"><mpath href="#pq1"/></animateMotion></circle>
+                  <circle r="3.4" class="acc"><animateMotion dur="1.4s" begin=".2s" repeatCount="indefinite"><mpath href="#pq2"/></animateMotion></circle>
+                  <circle r="3.4" class="acc"><animateMotion dur="2s" begin="1.4s" repeatCount="indefinite"><mpath href="#pq3"/></animateMotion></circle>
+                </g>
+              </svg>
+            </div>
+            <div class="card__body">
+              <p class="card__meta"><span class="card__idx">01</span>Industry · Canduit</p>
+              <h3 class="card__title">Multi-tenant AI support platform</h3>
+              <p class="card__text">Self-hosted RAG chatbots that businesses run on their own data, with live hand-off to human agents across web chat, WhatsApp, Messenger and email. I own the messaging ingress, the channel pipeline and parts of billing and deployment.</p>
+              <ul class="chips"><li>NestJS</li><li>FastAPI</li><li>LangGraph</li><li>PostgreSQL</li><li>Stripe</li><li>Kubernetes</li></ul>
+              <button class="btn-case" type="button" data-open="platform">Open case study <svg><use href="#i-arrow"/></svg></button>
+            </div>
+          </article>
+
+          <!-- 02 Samsu -->
+          <article class="card" data-case="samsu">
+            <div class="card__viz viz-term" aria-hidden="true">
+              <div class="term">
+                <div class="term__bar"><i></i><i></i><i></i><span>samsu · offline</span></div>
+                <div class="term__body">
+                  <p class="t-cmd"><b>$</b> samsu "build a page for my football club"</p>
+                  <p>› request is vague, drafting a spec…</p>
+                  <p>› asked 4 questions · spec.md approved</p>
+                  <p>› sandbox/club-site/index.html <span class="ok">written</span></p>
+                  <p>› sandbox/club-site/style.css <span class="ok">written</span></p>
+                  <p>› ../etc/hosts <span class="no">blocked: outside sandbox</span></p>
+                  <p class="t-done">✓ done · qwen3-4b via llama.cpp · no network</p>
+                  <p class="t-caret"><b>$</b> <span class="caret"></span></p>
+                </div>
+              </div>
+            </div>
+            <div class="card__body">
+              <p class="card__meta"><span class="card__idx">02</span>Agents · Personal</p>
+              <h3 class="card__title">Samsu, an offline agentic assistant</h3>
+              <p class="card__text">A private assistant that runs Qwen3-4B locally through llama.cpp. It only edits files inside a sandboxed folder, takes voice commands over Telegram, and turns vague requests into a written spec before it builds anything.</p>
+              <ul class="chips"><li>Python</li><li>FastAPI</li><li>llama.cpp</li><li>Qwen3-4B</li><li>Telegram</li></ul>
+              <button class="btn-case" type="button" data-open="samsu">Open case study <svg><use href="#i-arrow"/></svg></button>
+            </div>
+          </article>
+
+          <!-- 03 Offline chatbot -->
+          <article class="card" data-case="offline">
+            <div class="card__viz viz-phone" aria-hidden="true">
+              <div class="phone">
+                <div class="phone__status"><span>9:41</span><span class="phone__air">✈ Airplane mode</span></div>
+                <div class="phone__chat">
+                  <p class="bubble bubble--me">Explain photosynthesis like I'm ten.</p>
+                  <p class="bubble bubble--ai"><span class="js-stream"></span><span class="caret"></span></p>
+                </div>
+                <div class="phone__foot">Qwen3-0.6B · int4 · 328 MB · on device</div>
+              </div>
+            </div>
+            <div class="card__body">
+              <p class="card__meta"><span class="card__idx">03</span>On-device AI · Android</p>
+              <h3 class="card__title">A chatbot that works with no internet</h3>
+              <p class="card__text">Qwen3-0.6B, quantised to int4 so it fits in 328 MB, running on the phone itself through Google's LiteRT-LM. Streamed replies, chat memory and 57 unit tests.</p>
+              <ul class="chips"><li>Kotlin</li><li>Jetpack Compose</li><li>LiteRT-LM</li><li>int4</li></ul>
+              <button class="btn-case" type="button" data-open="offline">Open case study <svg><use href="#i-arrow"/></svg></button>
+            </div>
+          </article>
+
+          <!-- 04 Wafer -->
+          <article class="card" data-case="wafer">
+            <div class="card__viz viz-wafer" aria-hidden="true">
+              <div class="wafers">
+                <figure><span class="w" style="-webkit-mask-image:url(assets/img/wafer/center.png);mask-image:url(assets/img/wafer/center.png)"></span><figcaption>Center</figcaption></figure>
+                <figure><span class="w" style="-webkit-mask-image:url(assets/img/wafer/edge-ring.png);mask-image:url(assets/img/wafer/edge-ring.png)"></span><figcaption>Edge-Ring</figcaption></figure>
+                <figure><span class="w" style="-webkit-mask-image:url(assets/img/wafer/donut.png);mask-image:url(assets/img/wafer/donut.png)"></span><figcaption>Donut</figcaption></figure>
+                <figure><span class="w" style="-webkit-mask-image:url(assets/img/wafer/scratch.png);mask-image:url(assets/img/wafer/scratch.png)"></span><figcaption>Scratch</figcaption></figure>
+                <figure><span class="w" style="-webkit-mask-image:url(assets/img/wafer/loc.png);mask-image:url(assets/img/wafer/loc.png)"></span><figcaption>Loc</figcaption></figure>
+                <figure><span class="w" style="-webkit-mask-image:url(assets/img/wafer/edge-loc.png);mask-image:url(assets/img/wafer/edge-loc.png)"></span><figcaption>Edge-Loc</figcaption></figure>
+              </div>
+              <p class="wafers__note">Real WM-811K samples from the project</p>
+            </div>
+            <div class="card__body">
+              <p class="card__meta"><span class="card__idx">04</span>Computer vision · Research</p>
+              <h3 class="card__title">Wafer defect recognition with deep fusion</h3>
+              <p class="card__text">A dual-channel late fusion network combining ConvNeXt, Swin Transformer and a VAE on WM-811K's 800K+ wafer maps. Up to 98% accuracy with strong macro F1 on heavily imbalanced classes, with Grad-CAM to check what it looks at.</p>
+              <ul class="chips"><li>PyTorch</li><li>ConvNeXt</li><li>Swin</li><li>VAE</li><li>Grad-CAM</li></ul>
+              <button class="btn-case" type="button" data-open="wafer">Open case study <svg><use href="#i-arrow"/></svg></button>
+            </div>
+          </article>
+
+          <!-- 05 QA-LoRA -->
+          <article class="card" data-case="qalora">
+            <div class="card__viz viz-bars" aria-hidden="true">
+              <div class="bars">
+                <p class="bars__title">Qwen3-4B · reasoning benchmark</p>
+                <div class="bar"><span class="bar__k">Latency · baseline</span><span class="bar__track"><i style="--w:100%"></i></span><span class="bar__v">1.00×</span></div>
+                <div class="bar bar--acc"><span class="bar__k">Latency · QA-LoRA</span><span class="bar__track"><i style="--w:52%"></i></span><span class="bar__v">0.52×</span></div>
+                <div class="bar"><span class="bar__k">Accuracy · baseline</span><span class="bar__track"><i style="--w:100%"></i></span><span class="bar__v">100%</span></div>
+                <div class="bar bar--acc"><span class="bar__k">Accuracy · QA-LoRA</span><span class="bar__track"><i style="--w:98.5%"></i></span><span class="bar__v">≥98.5%</span></div>
+                <p class="bars__sets"><span>Social-Chem-101</span><span>MATH</span><span>LPP</span></p>
+              </div>
+            </div>
+            <div class="card__body">
+              <p class="card__meta"><span class="card__idx">05</span>Efficient LLMs · Research</p>
+              <h3 class="card__title">LLM reasoning, made cheaper with QA-LoRA</h3>
+              <p class="card__text">An evaluation framework that benchmarks Qwen3-4B on ethical, mathematical and logical reasoning for accuracy, latency, memory and reasoning quality. Quantisation-aware LoRA cut latency by about 48% and kept accuracy within 1.5% of the baseline.</p>
+              <ul class="chips"><li>Qwen3-4B</li><li>QA-LoRA</li><li>PEFT</li><li>Ablations</li></ul>
+              <button class="btn-case" type="button" data-open="qalora">Open case study <svg><use href="#i-arrow"/></svg></button>
+            </div>
+          </article>
+
+          <!-- 06 RYDEN -->
+          <article class="card" data-case="ryden">
+            <div class="card__viz viz-map" aria-hidden="true">
+              <svg viewBox="0 0 420 300">
+                <g class="vm-grid">
+                  <path d="M0 40h420M0 96h420M0 152h420M0 208h420M0 264h420M48 0v300M120 0v300M196 0v300M268 0v300M344 0v300"/>
+                </g>
+                <path class="vm-river" d="M-10 230 C80 200 120 260 210 236 S350 190 430 214"/>
+                <path id="vm-route" class="vm-route" d="M60 250 C60 190 120 190 120 152 S196 120 196 96 S300 70 344 52"/>
+                <circle class="vm-car" r="6"><animateMotion dur="4.5s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#vm-route"/></animateMotion></circle>
+                <g class="vm-pin" transform="translate(60 250)"><circle r="9"/><text y="26">Home</text></g>
+                <g class="vm-pin vm-pin--acc" transform="translate(344 52)"><circle r="9"/><text y="-16">Campus</text></g>
+                <g class="vm-tag" transform="translate(206 186)"><rect x="-74" y="-15" width="148" height="30" rx="15"/><text y="5">3 seats · verified</text></g>
+              </svg>
+            </div>
+            <div class="card__body">
+              <p class="card__meta"><span class="card__idx">06</span>Founder · Mobile</p>
+              <h3 class="card__title">RYDEN, ride sharing for students</h3>
+              <p class="card__text">Safe, affordable campus travel. A Flutter and Firebase app that verifies students, matches shared rides, tracks them live, and runs group rides and chat. I founded it, built the backend and deployment end to end, and it is live at rydenbd.com.</p>
+              <ul class="chips"><li>Flutter</li><li>Firebase</li><li>Google Routes</li><li>FCM</li></ul>
+              <button class="btn-case" type="button" data-open="ryden">Open case study <svg><use href="#i-arrow"/></svg></button>
+            </div>
+          </article>
+
+          <!-- 07 Candle Co. -->
+          <article class="card" data-case="candle">
+            <div class="card__viz viz-shop" aria-hidden="true">
+              <div class="shop">
+                <div class="shop__img"><span class="candle"><i class="flame"></i></span></div>
+                <div class="shop__info">
+                  <p class="shop__cat">Wax &amp; supplies</p>
+                  <p class="shop__name">Soy wax flakes</p>
+                  <div class="shop__weights"><span>250 g</span><span>500 g</span><span>1 kg</span></div>
+                  <p class="shop__price"><small>Tk</small> <b class="js-price">450</b></p>
+                  <p class="shop__del">Delivery from real cart weight, priced on the server</p>
+                  <span class="shop__wa">Order on WhatsApp</span>
+                </div>
+              </div>
+            </div>
+            <div class="card__body">
+              <p class="card__meta"><span class="card__idx">07</span>Freelance · Web</p>
+              <h3 class="card__title">Candle Co., a store an owner can run alone</h3>
+              <p class="card__text">A production storefront and owner dashboard for a candle-supplies shop, built for someone who has never opened a terminal. Per-weight pricing, delivery charges computed on the server, row-level security and edge-cached pages.</p>
+              <ul class="chips"><li>Next.js 16</li><li>React 19</li><li>Supabase</li><li>Tailwind v4</li></ul>
+              <button class="btn-case" type="button" data-open="candle">Open case study <svg><use href="#i-arrow"/></svg></button>
+            </div>
+          </article>
+
+          <div class="work__end">
+            <p>That's seven. There are more below, and the rest is on GitHub.</p>
+            <a class="link-arrow" href="#more">All projects <svg><use href="#i-down"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CASE STUDY TEMPLATES ============ -->
+    <template id="case-platform">
+      <header class="case__head">
+        <p class="case__meta"><span>01</span>Industry · Canduit · Ongoing</p>
+        <h2 class="case__title" id="caseTitle">Multi-tenant AI support platform</h2>
+        <p class="case__lede">Canduit's self-hosted platform lets a business put an AI assistant on its own documents and website. Every client runs in an isolated stack. When the AI can't help, a person takes over the same conversation in real time.</p>
+        <p class="case__note">The code is private and the details here are kept general on purpose. The engineering is what I can talk about.</p>
+      </header>
+      <div class="case__grid">
+        <section>
+          <h3>What I built</h3>
+          <div class="case__items">
+            <div><h4>Messaging ingress</h4><p>I designed and wrote, on my own, the single public entry point for every WhatsApp and Messenger event across all clients. It checks each request's cryptographic signature, splits batched events that belong to different clients, and puts each one in that client's own queue. It acknowledges an event only after it is safely queued, so a client that is down picks its messages up when it comes back. Routing changes reach every running copy at once.</p></div>
+            <div><h4>Channel pipeline</h4><p>WhatsApp, Messenger and email channels end to end. The AI answers first and an agent can take over at any moment. Replies go out exactly once, even after a crash or a timeout, and calls to outside APIs fail fast and retry instead of hanging. Email comes in from Gmail and IMAP mailboxes and becomes threaded support conversations.</p></div>
+            <div><h4>Payments and billing</h4><p>Subscription billing on Stripe: managing payment methods inside the dashboard, plan upgrades, seats and annual switches, and metering of AI replies so usage is billed correctly. I also tracked down edge cases such as double-charged overages, duplicate refunds and failed card payments that came back as generic errors.</p></div>
+            <div><h4>DevOps</h4><p>Containerised services, Helm charts for Kubernetes, and CI pipelines that build images and deploy them to cloud servers. Health checks that tell the orchestrator when something is stuck, and a one-command local stack that brings up the whole platform, payment webhooks included.</p></div>
+            <div><h4>Reliability</h4><p>Before fixing a class of bugs, I wrote failure-mode test suites that reproduce it: race conditions between service copies, lost timers after restarts, duplicate sends and slow upstream APIs. Then I fixed them until the tests passed.</p></div>
+          </div>
+        </section>
+        <aside>
+          <h3>Stack</h3>
+          <ul class="chips"><li>TypeScript</li><li>NestJS</li><li>Node.js</li><li>Python</li><li>FastAPI</li><li>LangGraph</li><li>Vector DB</li><li>PostgreSQL</li><li>Message queues</li><li>Socket.IO</li><li>Stripe</li><li>Docker</li><li>Kubernetes</li><li>Helm</li><li>GitHub Actions</li><li>AWS</li><li>Linux</li></ul>
+          <h3>Ideas I'm proud of</h3>
+          <ul class="case__list"><li>One webhook address for every client, so adding a client never touches the Meta configuration.</li><li>Isolation by design: the ingress holds no tokens and no chats, and each client can only read its own queue.</li><li>Tests that describe the failure first, then the fix.</li></ul>
+        </aside>
+      </div>
+    </template>
+
+    <template id="case-samsu">
+      <header class="case__head">
+        <p class="case__meta"><span>02</span>Agents · Personal project</p>
+        <h2 class="case__title" id="caseTitle">Samsu, an offline agentic assistant</h2>
+        <p class="case__lede">Cloud assistants need your files and your data to leave your machine. I wanted a chat assistant that runs fully offline, keeps every conversation on the computer, and can't touch anything it shouldn't.</p>
+        <p class="case__links"><a class="pill" href="https://github.com/zero00147/SAMSUU" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg> Source</a></p>
+      </header>
+      <div class="case__grid">
+        <section>
+          <h3>How it works</h3>
+          <div class="case__items">
+            <div><h4>Local model</h4><p>Qwen3-4B runs through a llama.cpp server behind a FastAPI app, with a CLI, a web UI and a Telegram bot on top. The model server stays warm between sessions, so the next launch doesn't reload 2.3 GB.</p></div>
+            <div><h4>Sandboxed tools</h4><p>Give it a folder and the model gets file tools (list, read, write, edit, move, delete) that work only inside it. Every path is resolved before anything runs, so absolute paths, <code>..</code> traversal and symlinks that point outside are all rejected. Give it no folder and it has no tools at all.</p></div>
+            <div><h4>Spec before code</h4><p>When a request is vague, Samsu writes a short spec and asks about the gaps before it builds anything.</p></div>
+            <div><h4>Voice from anywhere</h4><p>Telegram voice commands, so I can hand it work from my phone.</p></div>
+          </div>
+        </section>
+        <aside>
+          <h3>Stack</h3>
+          <ul class="chips"><li>Python</li><li>FastAPI</li><li>llama.cpp</li><li>Qwen3-4B</li><li>Tool calling</li><li>Telegram Bot API</li></ul>
+          <h3>Role</h3>
+          <p>Sole developer, from the agent and sandbox to Telegram voice control.</p>
+        </aside>
+      </div>
+    </template>
+
+    <template id="case-offline">
+      <header class="case__head">
+        <p class="case__meta"><span>03</span>On-device AI · Android</p>
+        <h2 class="case__title" id="caseTitle">A chatbot that works with no internet</h2>
+        <p class="case__lede">Most chat apps stop working the moment the network does. This one keeps going in airplane mode, because the model lives on the phone.</p>
+        <p class="case__links"><a class="pill" href="https://github.com/zero00147/OfflineChatbot" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg> Source</a></p>
+      </header>
+      <div class="case__grid">
+        <section>
+          <h3>What I built</h3>
+          <div class="case__items">
+            <div><h4>On-device inference</h4><p>Integrated Google's LiteRT-LM runtime with Qwen3-0.6B quantised to int4, which brings the model down to 328 MB. An engine interface keeps the UI independent of the runtime.</p></div>
+            <div><h4>Installable by anyone</h4><p>A fresh phone with no model shows a download banner, fetches the model with a resumable download, verifies it and loads it. No cables or developer tools needed.</p></div>
+            <div><h4>Streaming UI</h4><p>Replies stream in word by word with a caret and a working Stop button, and the model's hidden reasoning tags are filtered out before they reach the screen.</p></div>
+            <div><h4>Memory and tests</h4><p>Conversations persist in Room and a sliding history window gives the model memory across turns. 57 unit tests cover the downloader, streaming, history and view model.</p></div>
+          </div>
+        </section>
+        <aside>
+          <h3>Stack</h3>
+          <ul class="chips"><li>Kotlin</li><li>Jetpack Compose</li><li>LiteRT-LM</li><li>Qwen3-0.6B</li><li>int4</li><li>JUnit</li></ul>
+          <h3>Role</h3>
+          <p>Sole developer, from model integration to the UI and testing.</p>
+        </aside>
+      </div>
+    </template>
+
+    <template id="case-wafer">
+      <header class="case__head">
+        <p class="case__meta"><span>04</span>Computer vision · Solo research project</p>
+        <h2 class="case__title" id="caseTitle">Wafer defect recognition with deep fusion networks</h2>
+        <p class="case__lede">Chip fabs test every die on a wafer, and the spatial pattern of failures points to the process step that went wrong. WM-811K has more than 800,000 wafer maps, and most defect classes are rare.</p>
+        <p class="case__links"><a class="pill" href="https://github.com/0-Lucifer/anamolies-detection-in-wafers-using-deep-learning-appraoch" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg> Source</a></p>
+      </header>
+      <div class="case__grid">
+        <section>
+          <h3>Approach</h3>
+          <div class="case__items">
+            <div><h4>Two views of one wafer</h4><p>A dual-channel, late fusion design: one stream sees the global wafer context, the other the local defect topology. ConvNeXt, a Swin Transformer and a VAE each contribute features.</p></div>
+            <div><h4>Imbalance</h4><p>Focal loss and class balancing so the rare patterns are learned rather than ignored.</p></div>
+            <div><h4>Fitting it in memory</h4><p>Mixed precision, gradient checkpointing and progressive unfreezing.</p></div>
+            <div><h4>Trust</h4><p>Grad-CAM maps to confirm the model attends to the real defect regions, not to artefacts.</p></div>
+          </div>
+        </section>
+        <aside>
+          <h3>Result</h3>
+          <p class="case__big">98%</p>
+          <p>accuracy at best, with strong macro F1 across imbalanced classes.</p>
+          <h3>Stack</h3>
+          <ul class="chips"><li>Python</li><li>PyTorch</li><li>ConvNeXt</li><li>Swin Transformer</li><li>VAE</li><li>Grad-CAM</li><li>Weights &amp; Biases</li></ul>
+        </aside>
+      </div>
+    </template>
+
+    <template id="case-qalora">
+      <header class="case__head">
+        <p class="case__meta"><span>05</span>Efficient LLMs · Team research project</p>
+        <h2 class="case__title" id="caseTitle">LLM reasoning, made cheaper with QA-LoRA</h2>
+        <p class="case__lede">A 4B-parameter model can reason well, but it is slow and memory hungry on ordinary hardware. How much reasoning do you lose when you make it cheap?</p>
+        <p class="case__links"><a class="pill" href="https://github.com/iam-ajmunna/Reasoning-Pathways-in-Qwen3-4B-LoRA-Optimization-for-Efficient-QA-Performance" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg> Source</a></p>
+      </header>
+      <div class="case__grid">
+        <section>
+          <h3>What we did</h3>
+          <div class="case__items">
+            <div><h4>Benchmark framework</h4><p>Evaluates Qwen3-4B on ethical (Social-Chem-101), mathematical (MATH) and logical (LPP) reasoning across accuracy, latency, memory and reasoning quality.</p></div>
+            <div><h4>QA-LoRA</h4><p>Quantisation-aware low-rank adaptation, which keeps the fine-tuned model quantised for inference.</p></div>
+            <div><h4>Evidence</h4><p>Ablation studies and error analysis to see where reasoning breaks, not just how often.</p></div>
+          </div>
+        </section>
+        <aside>
+          <h3>Result</h3>
+          <p class="case__big">−48%</p>
+          <p>inference latency, lower memory use, and accuracy within 1.5% of the baseline.</p>
+          <h3>My part</h3>
+          <p>The benchmark framework through to the QA-LoRA experiments.</p>
+        </aside>
+      </div>
+    </template>
+
+    <template id="case-ryden">
+      <header class="case__head">
+        <p class="case__meta"><span>06</span>Founder and lead developer</p>
+        <h2 class="case__title" id="caseTitle">RYDEN, ride sharing for university students</h2>
+        <p class="case__lede">Getting to campus in Dhaka is expensive, and not always safe. Students heading the same way could share rides if they could trust who they ride with.</p>
+        <p class="case__links"><a class="pill pill--solid" href="https://rydenbd.com" target="_blank" rel="noopener">rydenbd.com <svg><use href="#i-arrow"/></svg></a><a class="pill" href="https://github.com/0-Lucifer/rydenf" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg> Source</a></p>
+      </header>
+      <div class="case__grid">
+        <section>
+          <h3>What I did</h3>
+          <div class="case__items">
+            <div><h4>Product</h4><p>Founded it, set the priorities with student users, and led delivery from the first requirement to the public release.</p></div>
+            <div><h4>Backend and deployment</h4><p>Built the Firebase backend and deployment end to end, and helped with the Flutter frontend. Fares are computed from real route distance, rides are tracked live, and push notifications cover requests, approvals and messages.</p></div>
+            <div><h4>Trust and safety</h4><p>Designed the student verification process so only verified students ride, and documented it so it runs the same way every time.</p></div>
+            <div><h4>Release</h4><p>Ran a structured Play Store closed testing programme: recruited testers, logged defects, and verified every fix before release.</p></div>
+          </div>
+        </section>
+        <aside>
+          <h3>Stack</h3>
+          <ul class="chips"><li>Flutter</li><li>Dart</li><li>Firebase Auth</li><li>Firestore</li><li>Cloud Messaging</li><li>Firebase Hosting</li><li>Google Maps</li><li>Routes API</li></ul>
+          <h3>Status</h3>
+          <p>Live on the web at rydenbd.com, on Android and iOS.</p>
+        </aside>
+      </div>
+    </template>
+
+    <template id="case-candle">
+      <header class="case__head">
+        <p class="case__meta"><span>07</span>Freelance · Production</p>
+        <h2 class="case__title" id="caseTitle">Candle Co., a store an owner can run alone</h2>
+        <p class="case__lede">A small candle-supplies business in Dhaka needed an online store that the owner could run without technical help. Built for someone who has never seen a terminal.</p>
+        <p class="case__links"><a class="pill pill--solid" href="https://candlecowax.com" target="_blank" rel="noopener">candlecowax.com <svg><use href="#i-arrow"/></svg></a><a class="pill" href="https://github.com/0-Lucifer/simple_ecommerce" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg> Source</a></p>
+      </header>
+      <div class="case__grid">
+        <section>
+          <h3>Highlights</h3>
+          <div class="case__items">
+            <div><h4>Pricing that matches the shop</h4><p>One product, many weights, each with its own price. Delivery is charged from the real cart weight by Dhaka zone, and always recomputed on the server rather than trusted from the browser.</p></div>
+            <div><h4>Payments without a gateway</h4><p>A deliberate choice: the owner takes bKash, Nagad, bank transfer or cash on delivery and tracks each order through its status. No gateway fees and no card data to protect.</p></div>
+            <div><h4>Secure by default</h4><p>Row-level security on every table, plus a server-side admin guard on every write.</p></div>
+            <div><h4>Fast</h4><p>Cookie-less product pages served from the edge cache in about 0.14 s, and images shrunk by up to 87% with AVIF.</p></div>
+            <div><h4>Stock that can't drift</h4><p>Inventory moves exactly once when an order completes and unwinds cleanly if the status is reversed.</p></div>
+          </div>
+        </section>
+        <aside>
+          <h3>Stack</h3>
+          <ul class="chips"><li>Next.js 16</li><li>React 19</li><li>TypeScript</li><li>Tailwind CSS v4</li><li>Supabase</li><li>PostgreSQL</li><li>Vercel</li></ul>
+          <h3>Also</h3>
+          <p>"Order on WhatsApp" at every step, plain-language errors, and a written owner's manual.</p>
+        </aside>
+      </div>
+    </template>
+
+    <!-- ============ MORE PROJECTS ============ -->
+    <section class="section more" id="more" aria-labelledby="more-title">
+      <div class="wrap">
+        <div class="sec-head sec-head--split">
+          <div>
+            <p class="eyebrow"><span>04</span>Index</p>
+            <h2 class="sec-title sec-title--sm" id="more-title" data-split-lines>More <em>projects</em>.</h2>
+          </div>
+          <div class="filters" role="group" aria-label="Filter projects">
+            <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="filter" data-filter="ai" aria-pressed="false">AI &amp; ML</button>
+            <button type="button" class="filter" data-filter="mobile" aria-pressed="false">Mobile</button>
+            <button type="button" class="filter" data-filter="web" aria-pressed="false">Web</button>
+            <button type="button" class="filter" data-filter="embedded" aria-pressed="false">Embedded</button>
+          </div>
+        </div>
+
+        <ul class="index" role="list">
+          <li class="row" data-tags="ai web">
+            <button class="row__head" type="button" aria-expanded="false">
+              <span class="row__num">08</span><span class="row__name">TouristinBD</span><span class="row__kind">Tourism reviews → travel tools</span><span class="row__stack">BERTopic · LLMs · FastAPI</span><span class="row__icon"><svg><use href="#i-plus"/></svg></span>
+            </button>
+            <div class="row__body"><div class="row__inner">
+              <p>A capstone project that mines 538 real Bangladeshi tourism reviews from Google Maps and Booking.com, across 27 places, for what travellers actually care about, including niche long-tail preferences. BERTopic topic modelling and a four-stage LLM preference pipeline feed a working site: a chatbot, an evidence-backed itinerary builder and a destination comparison tool. FastAPI over SQLite, with 449 tests.</p>
+              <a class="link-arrow" href="https://github.com/zero00147/TouristinBD" target="_blank" rel="noopener">Source <svg><use href="#i-arrow"/></svg></a>
+            </div></div>
+          </li>
+          <li class="row" data-tags="ai mobile">
+            <button class="row__head" type="button" aria-expanded="false">
+              <span class="row__num">09</span><span class="row__name">Smart Assistant</span><span class="row__kind">Bilingual voice &amp; chat AI</span><span class="row__stack">Flutter · Groq · Whisper</span><span class="row__icon"><svg><use href="#i-plus"/></svg></span>
+            </button>
+            <div class="row__body"><div class="row__inner">
+              <p>Lets English and Bangla speakers ask questions by text or voice. Llama 3.1 8B on the Groq API answers, Whisper Large v3 transcribes speech, and SQLite keeps each user's history on the device. I was the sole developer, from the bilingual voice pipeline to the Flutter app.</p>
+              <a class="link-arrow" href="https://github.com/zero00147/smartassistant" target="_blank" rel="noopener">Source <svg><use href="#i-arrow"/></svg></a>
+            </div></div>
+          </li>
+          <li class="row" data-tags="mobile">
+            <button class="row__head" type="button" aria-expanded="false">
+              <span class="row__num">10</span><span class="row__name">Boipara</span><span class="row__kind">Marketplace for used books</span><span class="row__stack">Flutter · Firebase</span><span class="row__icon"><svg><use href="#i-plus"/></svg></span>
+            </button>
+            <div class="row__body"><div class="row__inner">
+              <p>Bangladeshi readers buy and sell used books, and independent authors sell their own. Admins review every listing before it goes live. I built the backend (auth, moderation and payments) and launched it on Google Play.</p>
+              <a class="link-arrow" href="https://github.com/AtaraxiaaA/Boipara" target="_blank" rel="noopener">Source <svg><use href="#i-arrow"/></svg></a>
+            </div></div>
+          </li>
+          <li class="row" data-tags="mobile">
+            <button class="row__head" type="button" aria-expanded="false">
+              <span class="row__num">11</span><span class="row__name">Tourify</span><span class="row__kind">Travel booking and planning</span><span class="row__stack">Flutter · Firebase · Stripe</span><span class="row__icon"><svg><use href="#i-plus"/></svg></span>
+            </button>
+            <div class="row__body"><div class="row__inner">
+              <p>One app for flights, hotels, buses, trains and car rentals, with database design, secure sign-in, profile storage and Stripe payment integration. I was the top contributor on the team.</p>
+              <a class="link-arrow" href="https://github.com/0-Lucifer/Tourify" target="_blank" rel="noopener">Source <svg><use href="#i-arrow"/></svg></a>
+            </div></div>
+          </li>
+          <li class="row" data-tags="embedded">
+            <button class="row__head" type="button" aria-expanded="false">
+              <span class="row__num">12</span><span class="row__name">Vehicle Safety System</span><span class="row__kind">Impaired-driving detection</span><span class="row__stack">STM32 · ESP32 · Sensors</span><span class="row__icon"><svg><use href="#i-plus"/></svg></span>
+            </button>
+            <div class="row__body"><div class="row__inner">
+              <p>Catches impaired driving in real time. STM32 and ESP32 boards combine alcohol, heart rate, ultrasonic and camera-based eye-blink sensors and report live to a mobile app. A solo project, from sensor integration and firmware to the app.</p>
+            </div></div>
+          </li>
+          <li class="row" data-tags="ai">
+            <button class="row__head" type="button" aria-expanded="false">
+              <span class="row__num">13</span><span class="row__name">Employee Attrition Prediction</span><span class="row__kind">Interpretable ML</span><span class="row__stack">scikit-learn · SHAP</span><span class="row__icon"><svg><use href="#i-plus"/></svg></span>
+            </button>
+            <div class="row__body"><div class="row__inner">
+              <p>A stacking ensemble of five classical classifiers (KNN, logistic regression, SVM, random forest and AdaBoost) reaching 79.6% accuracy, explained with SHAP so HR teams can see why someone is flagged. I handled data preparation, visualisation, the ensemble and its explanations.</p>
+              <a class="link-arrow" href="https://github.com/iam-ajmunna/Predicting-Employee-Attrition-A-Machine-Learning-Approach-to-Workforce-Retention" target="_blank" rel="noopener">Source <svg><use href="#i-arrow"/></svg></a>
+            </div></div>
+          </li>
+          <li class="row" data-tags="web">
+            <button class="row__head" type="button" aria-expanded="false">
+              <span class="row__num">14</span><span class="row__name">NSUer Connect</span><span class="row__kind">Student web platform</span><span class="row__stack">JavaScript · PHP</span><span class="row__icon"><svg><use href="#i-plus"/></svg></span>
+            </button>
+            <div class="row__body"><div class="row__inner">
+              <p>A web platform for North South University students with NSU ID login, course details, personal reminders, CGPA analysis and prediction, and curriculum planning. Built as a four-person team.</p>
+              <a class="link-arrow" href="https://github.com/iam-ajmunna/NSUer-Connect" target="_blank" rel="noopener">Source <svg><use href="#i-arrow"/></svg></a>
+            </div></div>
+          </li>
+          <li class="row" data-tags="mobile">
+            <button class="row__head" type="button" aria-expanded="false">
+              <span class="row__num">15</span><span class="row__name">Medication Reminder</span><span class="row__kind">Offline health utility</span><span class="row__stack">Flutter · Local notifications</span><span class="row__icon"><svg><use href="#i-plus"/></svg></span>
+            </button>
+            <div class="row__body"><div class="row__inner">
+              <p>Daily medication schedules with reliable local notifications that fire even when the app is closed, recurring doses, automatic clean-up of expired reminders, and fully offline storage.</p>
+              <a class="link-arrow" href="https://github.com/0-Lucifer/Medication-Reminder-app" target="_blank" rel="noopener">Source <svg><use href="#i-arrow"/></svg></a>
+            </div></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section experience" id="experience" aria-labelledby="exp-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow"><span>05</span>Experience</p>
+          <h2 class="sec-title" id="exp-title" data-split-lines>Where I've <em>done the work</em>.</h2>
+        </div>
+        <ol class="timeline">
+          <li class="job" data-reveal>
+            <div class="job__side">
+              <span class="job__tag job__tag--now">Current</span>
+              <h3 class="job__role">Software Developer, AI &amp; Automation</h3>
+              <p class="job__org">Canduit · Dhaka</p>
+            </div>
+            <div class="job__main">
+              <ul>
+                <li>Build AI and automation for production software: backend microservices and automated workflows that replace repetitive manual work.</li>
+                <li>Engineering a self-hosted RAG platform that covers document and web ingestion, vector retrieval and grounded LLM responses, so clients can deploy AI chatbots on their own data.</li>
+                <li>Built the messaging ingress for WhatsApp and Messenger from scratch, and the channel pipeline that lets AI and human agents share a conversation.</li>
+                <li>Work on subscription billing and payments with Stripe, from in-dashboard payment methods to usage metering.</li>
+                <li>Ship and run services with Docker, Kubernetes and Helm, CI/CD on GitHub Actions, and Linux servers in the cloud.</li>
+              </ul>
+              <ul class="chips chips--sm"><li>TypeScript</li><li>Python</li><li>NestJS</li><li>FastAPI</li><li>PostgreSQL</li><li>Stripe</li><li>Docker</li><li>Kubernetes</li></ul>
+            </div>
+          </li>
+          <li class="job" data-reveal>
+            <div class="job__side">
+              <span class="job__tag">Research</span>
+              <h3 class="job__role">Research Assistant</h3>
+              <p class="job__org">Dept. of CSE, North South University</p>
+            </div>
+            <div class="job__main">
+              <ul>
+                <li>Contributed to faculty-supervised research across experimental design, data preparation, and statistical and computational analysis.</li>
+                <li>Kept documented, reproducible experiment records and wrote summaries of results for supervisor review.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="job" data-reveal>
+            <div class="job__side">
+              <span class="job__tag">Founder</span>
+              <h3 class="job__role">Founder &amp; Lead Developer</h3>
+              <p class="job__org">RYDEN · rydenbd.com</p>
+            </div>
+            <div class="job__main">
+              <ul>
+                <li>Took a student ride sharing service from first requirement to public release: priorities, verification process, closed testing, launch and support.</li>
+                <li>Main contact for users and service providers, from Google Play to Firebase and hosting.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="job" data-reveal>
+            <div class="job__side">
+              <span class="job__tag">Freelance</span>
+              <h3 class="job__role">Freelance Software Developer</h3>
+              <p class="job__org">Remote</p>
+            </div>
+            <div class="job__main">
+              <ul>
+                <li>Designed and delivered websites, Android and iOS apps and web applications for clients, owning requirements, development, deployment and support after launch.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="job" data-reveal>
+            <div class="job__side">
+              <span class="job__tag">Teaching</span>
+              <h3 class="job__role">EdTech Teacher</h3>
+              <p class="job__org">Online · Dhaka</p>
+            </div>
+            <div class="job__main">
+              <ul>
+                <li>Taught A Level, Higher Secondary and Secondary students online, adapting to each student's pace and tracking progress toward national and international exams.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section skills" id="skills" aria-labelledby="skills-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow"><span>06</span>Toolbox</p>
+          <h2 class="sec-title sec-title--sm" id="skills-title" data-split-lines>What I <em>reach for</em>.</h2>
+        </div>
+        <div class="skill-grid">
+          <div class="skill" data-reveal>
+            <h3>Machine learning</h3>
+            <ul><li>PyTorch</li><li>CNNs</li><li>Vision Transformers</li><li>ConvNeXt</li><li>Swin Transformer</li><li>3D U-Net</li><li>Mamba / state space models</li><li>Flow matching</li><li>Contrastive learning (SimCLR)</li><li>Grad-CAM</li><li>SHAP</li></ul>
+          </div>
+          <div class="skill" data-reveal>
+            <h3>LLM systems</h3>
+            <ul><li>RAG</li><li>LangGraph</li><li>Vector databases</li><li>Agents &amp; tool calling</li><li>Fine-tuning</li><li>QA-LoRA</li><li>Quantisation</li><li>LiteRT-LM</li><li>llama.cpp</li><li>Whisper</li></ul>
+          </div>
+          <div class="skill" data-reveal>
+            <h3>Backend</h3>
+            <ul><li>Node.js</li><li>NestJS</li><li>Express</li><li>FastAPI</li><li>REST APIs</li><li>WebSockets</li><li>Microservices</li><li>Message queues</li><li>PostgreSQL</li><li>Prisma</li><li>Graph data modelling</li><li>Stripe</li></ul>
+          </div>
+          <div class="skill" data-reveal>
+            <h3>DevOps &amp; cloud</h3>
+            <ul><li>Linux (Ubuntu)</li><li>Docker</li><li>Docker Compose</li><li>Kubernetes</li><li>Helm</li><li>GitHub Actions</li><li>AWS</li><li>Nginx</li><li>SSH &amp; server admin</li><li>cron &amp; systemd</li><li>Bash</li></ul>
+          </div>
+          <div class="skill" data-reveal>
+            <h3>Mobile &amp; web</h3>
+            <ul><li>Flutter</li><li>Dart</li><li>Kotlin</li><li>Jetpack Compose</li><li>Room</li><li>SQLite</li><li>Firebase</li><li>Supabase</li><li>React</li><li>Next.js</li><li>Tailwind CSS</li></ul>
+          </div>
+          <div class="skill" data-reveal>
+            <h3>Languages &amp; hardware</h3>
+            <ul><li>Python</li><li>TypeScript</li><li>JavaScript</li><li>Kotlin</li><li>Dart</li><li>C / C++</li><li>Java</li><li>LaTeX</li><li>STM32</li><li>ESP32 / ESP8266</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section class="section edu" id="education" aria-labelledby="edu-title">
+      <div class="wrap edu__grid">
+        <div class="edu__card" data-reveal>
+          <p class="eyebrow"><span>07</span>Education</p>
+          <h2 class="edu__school" id="edu-title">North South University</h2>
+          <p class="edu__deg">B.Sc. in Computer Science &amp; Engineering<br>February 2022 to May 2026 · Dhaka</p>
+          <p class="edu__gpa"><b data-count="3.67" data-decimals="2">3.67</b><span>/ 4.00 CGPA</span></p>
+        </div>
+        <div class="edu__side">
+          <div class="edu__block" data-reveal>
+            <h3>Leadership</h3>
+            <ul class="case__list">
+              <li>Team lead, senior design capstone project and thesis.</li>
+              <li>Group leader on every course project team throughout my degree.</li>
+              <li>Founder of RYDEN, a ride sharing service for university students.</li>
+            </ul>
+          </div>
+          <div class="edu__block" data-reveal>
+            <h3>Languages</h3>
+            <p>English (fluent) · Bengali (native)</p>
+          </div>
+          <div class="edu__block" data-reveal>
+            <h3>Away from the keyboard</h3>
+            <p>Playing music and football.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <p class="eyebrow"><span>08</span>Contact</p>
+        <p class="contact__kicker" data-reveal>Have a research question, a role, or a system that needs building?</p>
+        <h2 class="contact__title" id="contact-title"><a href="mailto:jummaahammed@gmail.com" class="contact__big" data-contact-chars>Let's <em>talk</em></a></h2>
+        <div class="contact__actions" data-reveal>
+          <a class="pill pill--solid pill--lg magnetic" href="mailto:jummaahammed@gmail.com"><svg><use href="#i-mail"/></svg> jummaahammed@gmail.com</a>
+          <button class="pill pill--lg magnetic js-copy" type="button" data-copy="jummaahammed@gmail.com"><svg><use href="#i-copy"/></svg> Copy email</button>
+          <a class="pill pill--lg magnetic" href="https://github.com/0-Lucifer" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg> GitHub</a>
+          <a class="pill pill--lg magnetic" href="cv.html">CV <svg><use href="#i-arrow"/></svg></a>
+        </div>
+        <p class="contact__alt" data-reveal>Academic email: <a href="mailto:ahammed.jumma@northsouth.edu">ahammed.jumma@northsouth.edu</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__row">
+      <p>© <span class="js-year">2026</span> Ahammed Jumma</p>
+      <p>Dhaka, Bangladesh · <time class="js-clock">--:--</time></p>
+      <p>HTML, CSS &amp; GSAP · Hosted on GitHub Pages</p>
+      <a href="#top" class="footer__top"><span>Back to top ↑</span></a>
+    </div>
+  </footer>
+
+  <!-- Case study overlay -->
+  <div class="case" id="caseOverlay" role="dialog" aria-modal="true" aria-labelledby="caseTitle" hidden>
+    <div class="case__panel" data-lenis-prevent>
+      <button class="case__close" type="button" aria-label="Close case study"><span>Close</span><svg><use href="#i-close"/></svg></button>
+      <div class="case__content wrap"></div>
+    </div>
+  </div>
+
+  <noscript><style>.loader,.cursor{display:none!important}</style></noscript>
+</body>
 </html>

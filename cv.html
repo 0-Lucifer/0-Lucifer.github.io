@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CV · Ahammed Jumma</title>
+  <meta name="description" content="Curriculum vitae of Ahammed Jumma: research in medical imaging and efficient LLMs, AI engineering at Canduit, B.Sc. in CSE from North South University.">
+  <link rel="canonical" href="https://0-lucifer.github.io/cv.html">
+  <meta property="og:title" content="CV · Ahammed Jumma">
+  <meta property="og:image" content="https://0-lucifer.github.io/assets/img/og.png">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <script>
+    try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+  <style>
+    :root {
+      --paper: #ffffff; --ink: #141414; --ink-2: #3d3b37; --muted: #6f6a62; --rule: #e3dfd7; --accent: #4a6a00; --lime: #d4ff3f;
+      --bg: #ebe7df; --sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif; --mono: "Geist Mono", ui-monospace, Menlo, monospace; --serif: "Instrument Serif", Georgia, serif;
+    }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0b0b0c; } }
+    :root[data-theme="dark"] { --bg: #0b0b0c; }
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) { animation: .4s cubic-bezier(.65,0,.35,1) both vt-out; }
+    ::view-transition-new(root) { animation: .7s cubic-bezier(.16,1,.3,1) both vt-in; }
+    @keyframes vt-out { to { opacity: 0; transform: translateY(-24px); } }
+    @keyframes vt-in { from { opacity: 0; transform: translateY(40px); } }
+    @media (prefers-reduced-motion: reduce) { ::view-transition-old(root), ::view-transition-new(root) { animation: none; } }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 400 13.5px/1.5 var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    ::selection { background: var(--lime); color: #111; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+    .bar { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px clamp(16px, 4vw, 40px); background: color-mix(in oklab, var(--bg) 80%, transparent); backdrop-filter: blur(12px); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 99px; border: 1px solid color-mix(in oklab, var(--ink) 25%, transparent); background: var(--paper); color: var(--ink); font: 500 14px/1 var(--sans); text-decoration: none; cursor: pointer; }
+    .btn--lime { background: var(--lime); border-color: var(--lime); color: #111; }
+    .btn svg { width: 16px; height: 16px; }
+    .bar .group { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .sheet { width: min(210mm, 100% - 32px); margin: 8px auto 64px; padding: clamp(24px, 6vw, 16mm) clamp(20px, 6vw, 16mm); background: var(--paper); border-radius: 6px; box-shadow: 0 40px 80px -40px rgba(0,0,0,.45); }
+    header.cv { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 20px; padding-bottom: 16px; border-bottom: 2px solid var(--ink); }
+    h1 { margin: 0; font-size: clamp(30px, 6vw, 40px); font-weight: 650; letter-spacing: -.045em; line-height: .95; }
+    h1 em { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; color: var(--accent); }
+    .role { margin: 8px 0 0; color: var(--ink-2); font-size: 14px; }
+    .contact { margin: 0; padding: 0; list-style: none; text-align: right; font: 400 11.5px/1.6 var(--mono); color: var(--ink-2); }
+    .contact a { text-decoration: none; }
+    section { margin-top: 18px; }
+    h2 { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; font: 600 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+    h2::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+    p { margin: 0; }
+    .entry { margin-top: 10px; break-inside: avoid; }
+    .entry:first-of-type { margin-top: 0; }
+    .row { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+    .title { font-weight: 600; font-size: 14px; letter-spacing: -.01em; }
+    .meta { flex: none; color: var(--muted); font: 400 11px/1.4 var(--mono); }
+    .sub { color: var(--ink-2); }
+    .desc { margin-top: 3px; color: var(--ink-2); }
+    .contrib { margin-top: 3px; color: var(--ink-2); }
+    .contrib b, .label { font-weight: 600; color: var(--ink); }
+    ul { margin: 4px 0 0; padding-left: 16px; color: var(--ink-2); }
+    li { margin-top: 2px; }
+    .pub-status { display: inline-block; margin-bottom: 4px; padding: 3px 7px; border-radius: 99px; background: #eef7cf; color: #2f4400; font: 500 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .authors { color: var(--muted); font: 400 11.5px/1.5 var(--mono); }
+    .authors b { color: var(--ink); }
+    .skills { display: grid; gap: 4px; }
+    .skills p { color: var(--ink-2); }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; }
+    @media (max-width: 640px) {
+      header.cv { grid-template-columns: 1fr; }
+      .contact { text-align: left; }
+      .row { flex-direction: column; gap: 0; }
+      .two { grid-template-columns: 1fr; }
+    }
+    @page { size: A4; margin: 12mm 13mm; }
+    @media print {
+      :root { --bg: #fff; }
+      body { background: #fff; font-size: 10.6px; }
+      .bar { display: none; }
+      .sheet { width: auto; margin: 0; padding: 0; box-shadow: none; border-radius: 0; }
+      h1 { font-size: 30px; }
+      .title { font-size: 11.6px; }
+      section { margin-top: 13px; }
+      a { text-decoration: none; }
+      .pub-status { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <a class="btn" href="./">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Portfolio
+    </a>
+    <div class="group">
+      <button class="btn" type="button" onclick="window.print()">Print</button>
+      <a class="btn btn--lime" href="assets/Ahammed-Jumma-CV.pdf" download>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Download PDF
+      </a>
+    </div>
+  </div>
+
+  <main class="sheet">
+    <header class="cv">
+      <div>
+        <h1>Ahammed <em>Jumma</em></h1>
+        <p class="role">Software Developer (AI &amp; Automation) · ML researcher</p>
+      </div>
+      <ul class="contact">
+        <li>Dhaka, Bangladesh</li>
+        <li><a href="mailto:jummaahammed@gmail.com">jummaahammed@gmail.com</a></li>
+        <li><a href="mailto:ahammed.jumma@northsouth.edu">ahammed.jumma@northsouth.edu</a></li>
+        <li><a href="https://0-lucifer.github.io">0-lucifer.github.io</a> · <a href="https://github.com/0-Lucifer">github.com/0-Lucifer</a></li>
+      </ul>
+    </header>
+
+    <section>
+      <h2>Research interests</h2>
+      <p class="sub">Medical image analysis and computer vision; generative modeling with flow matching; self-supervised and contrastive learning; efficient LLMs (quantization, fine-tuning, edge inference); LLM agents and tool use; retrieval augmented generation; explainable AI; speech and language AI for English and Bangla; graph-based data systems.</p>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="entry">
+        <div class="row"><span class="title">North South University, Dhaka</span><span class="meta">Feb 2022 – May 2026</span></div>
+        <p class="sub">B.Sc. in Computer Science and Engineering · CGPA 3.67 / 4.00</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Publications and manuscripts</h2>
+      <div class="entry">
+        <span class="pub-status">Under revision</span>
+        <p class="title">CitizenLink: Scalable Graph-Based Modeling and Analysis of Multi-Generational Citizen Relationships</p>
+        <p class="authors"><b>A. Jumma</b>, A. Bormon, A. A. Zishan, and R. Palit</p>
+        <p class="desc">Models Bangladesh's civil registry as a graph of parent, child and marital ties, enabling multi-generational queries that record-oriented databases handle poorly. Supports family trees, inheritor identification, lineage tracing and duplicate birth registration detection, with 13.0 ms NID lookups and sub-100 ms relationship queries across 5.13M citizens and 10.16M relationships.</p>
+        <p class="contrib"><b>Contribution:</b> Refined the core idea, optimized query speed, and wrote the paper and its figures.</p>
+      </div>
+      <div class="entry">
+        <span class="pub-status">In preparation</span>
+        <p class="title">Unsupervised Differentiation of Glioma Recurrence and Radiation Necrosis via Continuous Flow Matching of Anatomical Trajectories</p>
+        <p class="authors">M. M. Uddin, <b>A. Jumma</b>, and M. Y. S. Emu</p>
+        <p class="desc">TDFlow separates glioma recurrence from radiation necrosis by modeling how anatomy changes over time, not how a single MRI looks. A 3D U-Net flow matching model, trained on 3,000 healthy and 2,637 longitudinal patient scans, produces deformation features that a ConvNeXt-3D and Mamba encoder clusters without labels. Without biopsy labels it reached AUC 0.864 versus 0.812 for a supervised 3D ResNet-18, and held up on an external cohort.</p>
+        <p class="contrib"><b>Contribution:</b> Proposed the idea, prepared the data, building the model, and writing the manuscript.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Research experience</h2>
+      <div class="entry">
+        <div class="row"><span class="title">Research Assistant</span><span class="meta">Dhaka, Bangladesh</span></div>
+        <p class="sub">Department of Computer Science and Engineering, North South University</p>
+        <ul>
+          <li>Contributed to faculty-supervised research across experimental design, data preparation, and statistical and computational analysis.</li>
+          <li>Maintained documented, reproducible experiment records and prepared written summaries of results for supervisor review.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Professional experience</h2>
+      <div class="entry">
+        <div class="row"><span class="title">Software Developer (AI and Automation), Canduit</span><span class="meta">Current</span></div>
+        <ul>
+          <li>Build AI and automation solutions for production software, developing backend microservices and automated workflows that replace repetitive manual work.</li>
+          <li>Engineering a self-hosted retrieval augmented generation (RAG) platform of containerized microservices, covering document and web content ingestion, vector-based retrieval and grounded LLM response generation, so clients can deploy AI chatbots on their own data.</li>
+          <li>Built the messaging ingress and channel pipeline for WhatsApp and Messenger, and worked on Stripe subscription billing.</li>
+          <li>Deploy and maintain services with Docker, Kubernetes and CI/CD in Linux environments.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="row"><span class="title">Freelance Software Developer</span><span class="meta">Remote</span></div>
+        <ul><li>Designed and delivered websites, Android and iOS apps, and web applications for clients, owning requirements, development, deployment, and support after launch.</li></ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Selected academic projects</h2>
+      <div class="entry">
+        <p class="title">LLM Reasoning Optimization using QA-LoRA <span class="meta">· Efficient LLMs</span></p>
+        <ul>
+          <li>Built an evaluation framework benchmarking Qwen3-4B on ethical, mathematical, and logical reasoning (Social-Chem-101, MATH, LPP) across accuracy, latency, memory, and reasoning quality.</li>
+          <li>Applied QA-LoRA with quantization, cutting inference latency by about 48% and lowering memory use while keeping accuracy within 1.5% of baseline, backed by ablation studies and error analysis.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <p class="title">Wafer Defect Pattern Recognition using Deep Fusion Networks <span class="meta">· Computer Vision</span></p>
+        <ul>
+          <li>Designed a dual-channel, late fusion architecture combining ConvNeXt, Swin Transformer, and a VAE on WM-811K (800K+ wafer maps), reaching up to 98% accuracy with strong macro F1 on highly imbalanced classes.</li>
+          <li>Trained with focal loss, class balancing, mixed precision, gradient checkpointing, and progressive unfreezing; verified model attention on true defect regions with Grad-CAM. Solo project.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <p class="title">Employee Attrition Prediction <span class="meta">· Interpretable ML</span></p>
+        <ul><li>Built a stacking ensemble of five classical classifiers (79.6% accuracy), explained with SHAP.</li></ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>AI and software engineering projects</h2>
+      <div class="entry">
+        <p class="title">Offline Chatbot for Android <span class="meta">· Kotlin, Jetpack Compose, LiteRT-LM</span></p>
+        <p class="desc">Runs Qwen3-0.6B (int4, 328 MB) on device via Google's LiteRT-LM, with streamed replies, chat memory, and 57 unit tests. Sole developer.</p>
+      </div>
+      <div class="entry">
+        <p class="title">Samsu: Offline Agentic AI Assistant <span class="meta">· Python, FastAPI, llama.cpp</span></p>
+        <p class="desc">Runs Qwen3-4B via llama.cpp, edits files only in a sandboxed folder, takes Telegram voice commands, and turns vague requests into a spec before building. Sole developer.</p>
+      </div>
+      <div class="entry">
+        <p class="title">Smart Assistant: Bilingual Voice and Chat AI Assistant <span class="meta">· Flutter, Groq API</span></p>
+        <p class="desc">English and Bangla text or voice questions: Llama 3.1 8B answers, Whisper Large v3 transcribes speech, and SQLite keeps each user's history. Sole developer.</p>
+      </div>
+      <div class="entry">
+        <p class="title">RYDEN: University Ride Sharing Platform <span class="meta">· Founder and Lead Developer</span></p>
+        <p class="desc">Flutter and Firebase app that verifies students and matches shared rides with live tracking; live at rydenbd.com. Built the backend and deployment end to end.</p>
+      </div>
+      <div class="entry">
+        <p class="title">Boipara: Marketplace for Book Thrifting <span class="meta">· Flutter, Firebase</span></p>
+        <p class="desc">Readers buy and sell used books and independent authors sell their own, with admin review of every listing. Built the backend (auth, moderation, payments) and launched it on Google Play.</p>
+      </div>
+      <div class="entry">
+        <p class="title">Vehicle Safety System <span class="meta">· Embedded Systems</span></p>
+        <p class="desc">STM32 and ESP32 boards combine alcohol, heart rate, ultrasonic, and camera-based eye-blink sensors and report live to a mobile app. Solo project.</p>
+      </div>
+    </section>
+
+    <section class="two">
+      <div>
+        <h2>Teaching</h2>
+        <div class="entry">
+          <p class="title">EdTech Teacher, Dhaka</p>
+          <p class="desc">Taught A Level, Higher Secondary, and Secondary students online, adapting instruction to each student's pace.</p>
+        </div>
+      </div>
+      <div>
+        <h2>Leadership</h2>
+        <ul>
+          <li>Team Lead, Senior Design Capstone Project &amp; Thesis, NSU.</li>
+          <li>Group leader on every course project team.</li>
+          <li>Founder of RYDEN.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Technical skills</h2>
+      <div class="skills">
+        <p><span class="label">Programming:</span> Python, TypeScript, JavaScript, Kotlin, Dart, C/C++, Java, LaTeX</p>
+        <p><span class="label">Machine learning and AI:</span> PyTorch; CNNs, Vision Transformers, ConvNeXt, Swin Transformer, 3D U-Net, state space models (Mamba); flow matching; contrastive learning (SimCLR); LLM fine-tuning and quantization (QA-LoRA); RAG; on-device LLM inference (LiteRT-LM, llama.cpp); LLM agents and tool calling; speech recognition (Whisper); explainability (Grad-CAM, SHAP)</p>
+        <p><span class="label">DevOps and Linux:</span> Linux (Ubuntu), Bash, Docker, Docker Compose, Kubernetes, Helm, CI/CD with GitHub Actions, Nginx, SSH and remote server administration, cron and systemd, Git</p>
+        <p><span class="label">Backend and mobile:</span> NestJS, FastAPI, REST APIs, microservices, PostgreSQL, vector databases, graph data modeling, Stripe, Flutter, Jetpack Compose, Firebase, Room, SQLite</p>
+        <p><span class="label">Embedded:</span> STM32, ESP32 and ESP8266, sensor interfacing</p>
+        <p><span class="label">Languages:</span> English (fluent), Bengali (native) · <span class="label">Hobbies:</span> playing music, football</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
